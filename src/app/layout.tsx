@@ -13,6 +13,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <SesionProvider>
       <body>
+        <script src="https://upload-widget.cloudinary.com/latest/global/all.js"
+        type="text/javascript" />
+        
       {children}
       </body>
       </SesionProvider>

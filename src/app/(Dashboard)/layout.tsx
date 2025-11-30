@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-/* import Links from "../../components/links";
-import Footer from "../../components/footer"; */
+import Links from "@/components/links";
 
 
 export const metadata:Metadata = {
@@ -15,7 +14,11 @@ interface DashboardLayoutprops {
 export default function AuthLayout({children}: DashboardLayoutprops){
   return(
   <div className="flex flex-col min-h-screen" >
+    <Links />
       <div>
+          <script src="https://upload-widget.cloudinary.com/latest/global/all.js"
+        type="text/javascript" />
+        
         {children}
       </div>
   </div>
