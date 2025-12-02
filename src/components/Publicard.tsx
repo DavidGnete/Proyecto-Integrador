@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import ProductCard from "./Cards";
-import { coworking } from "@/lib/models/user";
 
 interface Product {
   _id: string;
@@ -57,7 +56,7 @@ export default function Products() {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-white ">
+    <section className="py-16 md:py-24 bg-white  ">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
             Nuestros espacios
@@ -68,7 +67,7 @@ export default function Products() {
             No hay coworkings disponibles.
           </p>
         ) : (
-          <div className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
             {coworking.map((place) => (
               <ProductCard
                 key={place._id}

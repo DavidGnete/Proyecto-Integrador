@@ -10,16 +10,25 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 export default function Links() {
 
   return (
-    <>
-    <main className="font-sold shadow-md rounded-md"> {/* shadow-md sirve para sombra elementos */} 
-        <nav className="flex justify-end p-15 fixed bg-black opacity-70 shadow-md rounded-md w-full z-5"> {/* justify-end, justify-rigth, justify-center */}
-            <div className="flex gap-6 text-white ">
-            <Link href="/Home" className="hover:text-white-300 transition-colors font-bold">Inicio</Link>
-            <Link href="/contact" className="hover:text-gray-200 transition-colors font-bold">Contactanos</Link>
-            <Link href="/config" className="hover:text-gray-200 transition-colors font-bold">configuracion</Link>        
-            </div>
-          </nav>
-      </main>
-    </>
+  <nav
+  className="
+    fixed top-2 left-1/2 -translate-x-1/2
+  w-full max-w-7xl
+  bg-transparent backdrop-blur-md
+  border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.35)]
+  rounded-2xl
+  py-4 px-8
+  z-50
+  "
+>
+
+  <div className="flex gap-8 text-white font-bold text-2xl">
+    <Link href="/Home" className="hover:text-white/70 transition-colors">Inicio</Link>
+    <Link href="/contact" className="hover:text-white/70 transition-colors">Contactanos</Link>
+    <Link href="/config" className="hover:text-white/70 transition-colors">Configuración</Link>
+  </div>
+
+</nav>
+
   );
 }

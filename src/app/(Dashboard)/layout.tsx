@@ -14,13 +14,16 @@ interface DashboardLayoutprops {
 export default function AuthLayout({children}: DashboardLayoutprops){
   return(
   <div className="flex flex-col min-h-screen" >
-    <Links />
-      <div>
           <script src="https://upload-widget.cloudinary.com/latest/global/all.js"
         type="text/javascript" />
         
+      <div className="relative z-0">
         {children}
       </div>
+
+      <div className="relative z-50">
+    <Links />
+    </div>
   </div>
   )
 }
