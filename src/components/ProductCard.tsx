@@ -10,13 +10,14 @@ import axios from "axios";
 
 
 interface ProductCardProps {
+  data: any;
   _id: string;
   name: string;
   price: string | number;
   public_id: string;
 }
 
-const ProductCard = ({ _id, name, price, public_id }: ProductCardProps) => {
+const ProductCard : React.FC<ProductCardProps> = ({ _id, name, price, public_id, data }) => {
   const router = useRouter();
   const[showpago, setShowpago]= useState (false);
   const [preferenceId, setPreferenceId] = useState<string | null>(null);

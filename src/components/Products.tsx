@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import ProductCard from "./Cards";
+import ProductCard from "./ProductCard";
+
 
 interface Product {
   _id: string;
@@ -37,7 +38,7 @@ export default function Products() {
 
   if (isLoading) {
     return (
-      <section className="py-16 bg-white">
+      <section>
         <div className="container mx-auto px-4 text-center">
           <p className="text-xl text-gray-600">Cargando coworkings...</p>
         </div>
@@ -56,9 +57,9 @@ export default function Products() {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-white  ">
+    <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white">
             Nuestros espacios
         </h2>
 
@@ -71,6 +72,7 @@ export default function Products() {
             {coworking.map((place) => (
               <ProductCard
                 key={place._id}
+                _id={place._id}
                 name={place.name}
                 price={place.price}
                 public_id={place.public_id}

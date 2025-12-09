@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import Links from "@/components/links";
 
 
+
+
 export const metadata:Metadata = {
   title: "layout y template",
   description: "Demo layaout y templates"

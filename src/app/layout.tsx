@@ -1,5 +1,5 @@
 // app/layout.tsx
-import "./globals.css"; // ✅ Import your Tailwind/global styles here
+import "./globals.css";// ✅ Import your Tailwind/global styles here
 import type { Metadata } from "next";
 import SesionProvider from "./providers";
 

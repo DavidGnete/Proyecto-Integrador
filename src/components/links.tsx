@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link";
+
 /* import Navbar from "./Navbar"; */
 import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -26,6 +27,7 @@ export default function Links() {
     <Link href="/Home" className="hover:text-white/70 transition-colors">Inicio</Link>
     <Link href="/contact" className="hover:text-white/70 transition-colors">Contactanos</Link>
     <Link href="/config" className="hover:text-white/70 transition-colors">Configuración</Link>
+    <Link href="/zustand-demo" className="hover:text-white/70 transition-colors">Ditails</Link> 
   </div>
 
 </nav>
