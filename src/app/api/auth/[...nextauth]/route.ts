@@ -51,8 +51,9 @@ const handler = NextAuth({
     },
 
     async session({ session, token }) {
-      session.user!.id = token.id;
-      session.user!.name = token.name;
+      // cast to any to add custom fields without changing NextAuth types here
+      (session.user as any).id = (token as any).id;
+      (session.user as any).name = (token as any).name;
       return session;
     },
   },

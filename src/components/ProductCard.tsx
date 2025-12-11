@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 interface ProductCardProps {
-  data: any;
+  data?: any;
   _id: string;
   name: string;
   price: string | number;
