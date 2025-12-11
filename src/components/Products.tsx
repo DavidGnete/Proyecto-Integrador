@@ -8,6 +8,9 @@ interface Product {
   name: string;
   price: number | string;
   public_id: string;
+  city?: string;
+  country?: string;
+  description?: string;
 }
 
 export default function Products() {
@@ -76,6 +79,9 @@ export default function Products() {
                 name={place.name}
                 price={place.price}
                 public_id={place.public_id}
+                city={place.city}
+                country={place.country}
+                description={place.description}
               />
             ))}
           </div>

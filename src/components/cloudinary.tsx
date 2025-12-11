@@ -10,12 +10,16 @@ export default function Lista (){
     const [name, setname]= useState("");
     const [price, setprice]= useState("");
     const [city, setcity]= useState("");
+    const [country, setcountry]= useState("");
+    const [description, setdescription]= useState("");
 
 
 
         const productSchema = yup.object({ 
-            name: yup.string().required('El nombre del producto es obligatorio'), 
-            price: yup.number().typeError('El precio debe ser numérico').required('El precio es obligatorio').positive('El precio debe ser mayor que 0'), /* ADDED */ 
+            name: yup.string().required('El nombre del coworking es obligatorio'), 
+            price: yup.number().typeError('El precio debe ser numérico').required('El precio es obligatorio').positive('El precio debe ser mayor que 0'),
+            country: yup.string().required('El país es obligatorio'),
+            description: yup.string().required('La descripción es obligatoria'),
         }); 
 
         const handleSubmit =async (e:any) => {
@@ -23,7 +27,7 @@ export default function Lista (){
         
             
                 try { 
-                    await productSchema.validate({ name,city, price: Number(price),}); 
+                    await productSchema.validate({ name, city, country, description, price: Number(price)}); 
                 } catch (err:any) { /* ADDED */
                     toast.error(err?.message || 'Datos inválidos'); 
                     return; 
@@ -34,6 +38,8 @@ export default function Lista (){
         formData.append('file', file);
         formData.append("name", name);
         formData.append("city", city);
+        formData.append("country", country);
+        formData.append("description", description);
         formData.append("price", price);
         } else {
             toast.error("no se pudo crear los datos")
@@ -43,15 +49,17 @@ export default function Lista (){
         try{
             const upload = await axios.post("/api/nube", formData);
             // succesful upload
-            toast.success('Producto creado correctamente');
+            toast.success('Coworking creado correctamente');
             // reset form
             setfile(null);
             setname("");
             setcity("");
+            setcountry("");
+            setdescription("");
             setprice("");
         }catch(err:any){
             console.error("error", err)
-            toast.error("Error subiendo el producto")
+            toast.error("Error subiendo el coworking")
         };
         };
 
@@ -72,7 +80,7 @@ return(
                 </div>
                 <div>
                     <label className="block mb-2 text-xm font-medium text-gray-800">Nombre Coworking</label>
-                <input value={name} type="text"  placeholder="Nombre producto"
+                <input value={name} type="text"  placeholder="Nombre coworking"
                     className="w-full px-4 py-2 border
                             border-gray-300 rounded-md
                             focus:outline-none focus:ring-2
@@ -80,8 +88,8 @@ return(
                     onChange={(e) => setname(e.target.value)} />
                 </div>
                 <div>
-                    <label className="block mb-2 text-xm font-medium text-gray-800">Ubicacion Coworking</label>
-                <input value={city} type="text"  placeholder="Ubicacion coworking"
+                    <label className="block mb-2 text-xm font-medium text-gray-800">Ciudad</label>
+                <input value={city} type="text"  placeholder="Ciudad"
                     className="w-full px-4 py-2 border
                             border-gray-300 rounded-md
                             focus:outline-none focus:ring-2
@@ -89,8 +97,26 @@ return(
                     onChange={(e) => setcity(e.target.value)} />
                 </div>
                 <div>
+                    <label className="block mb-2 text-xm font-medium text-gray-800">País</label>
+                <input value={country} type="text"  placeholder="País"
+                    className="w-full px-4 py-2 border
+                            border-gray-300 rounded-md
+                            focus:outline-none focus:ring-2
+                            focus:ring-blue-300"
+                    onChange={(e) => setcountry(e.target.value)} />
+                </div>
+                <div>
+                <label className="block mb-2 text-xm font-medium text-gray-800">Descripción</label>
+                <textarea value={description} placeholder="Descripción del coworking"
+                className="w-full px-4 py-2 border
+                            border-gray-300 rounded-md
+                            focus:outline-none focus:ring-2
+                            focus:ring-blue-300"
+                    onChange={(e) => setdescription(e.target.value)} />
+                </div>
+                <div>
                 <label className="block mb-2 text-xm font-medium text-gray-800">Precio</label>
-                <input value={price} type="number" placeholder="Precio producto"
+                <input value={price} type="number" placeholder="Precio"
                 className="w-full px-4 py-2 border
                             border-gray-300 rounded-md
                             focus:outline-none focus:ring-2

@@ -14,9 +14,12 @@ interface ProductCardProps {
   name: string;
   price: string | number;
   public_id: string;
+  city?: string;
+  country?: string;
+  description?: string;
 }
 
-const ProductCard = ({ _id, name, price, public_id }: ProductCardProps) => {
+const ProductCard = ({ _id, name, price, public_id, city, country, description }: ProductCardProps) => {
   const router = useRouter();
   const[showpago, setShowpago]= useState (false);
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
@@ -68,34 +71,29 @@ const ProductCard = ({ _id, name, price, public_id }: ProductCardProps) => {
           />
         </div>
 
-        {/* Información del producto */}
-        {/* <div className="px-5 py-4 flex items-center justify-between gap-4">
-          <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">
-              {name}
-            </h3>
-            <p className="mt-2 text-xl font-bold text-gray-800">
-              ${price}
+        {/* Información de la ubicación */}
+        <div className="px-5 py-4">
+          <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">
+            {name}
+          </h3>
+          {(city || country) && (
+            <p className="text-sm text-gray-600 mt-1">
+              {city && <span>{city}</span>}
+              {city && country && <span>, </span>}
+              {country && <span>{country}</span>}
             </p>
-          </div>
-
-          <div className="flex-shrink-0 ml-4">
-            {!preferenceId && (
-            <button
-              onClick={createpreferenceid}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 text-white font-semibold shadow-lg hover:opacity-95 hover:scale-105 transform transition cursor-pointer"
-              >
-            pagar 
-            </button>
-            )}
-            {preferenceId && (
-              <div className="mt-4">
-                <Wallet initialization={{ preferenceId }} />
-              </div>
-            )}
-            
-          </div>
-        </div> */}
+          )}
+          
+          {/* Separador */}
+          {description && <div className="border-t border-gray-200 my-3"></div>}
+          
+          {/* Descripción */}
+          {description && (
+            <p className="text-sm text-gray-700 line-clamp-3">
+              {description}
+            </p>
+          )}
+        </div>
       </div>
     </>
   );

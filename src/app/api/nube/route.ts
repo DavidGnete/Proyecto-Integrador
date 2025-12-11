@@ -13,16 +13,26 @@ export async function POST(request: Request) {
   const image = data.get("file");
   const name = data.get("name");
   const city = data.get("city");
+  const country = data.get("country");
   const price = data.get("price");
+  const description = data.get("description");
 
   const productSchema = yup.object({
     name: yup.string().required('El nombre es obligatorio'),
     price: yup.number().typeError('Precio inválido').required('El precio es obligatorio').positive('El precio debe ser mayor que 0'),
+    country: yup.string().required('El país es obligatorio'),
+    description: yup.string().required('La descripción es obligatoria'),
   });
 
   try {
     // formData values might be non-string, coerce as needed
-    await productSchema.validate({ name: String(name || ''), city: String(city || ''), price: Number(price), });
+    await productSchema.validate({ 
+      name: String(name || ''), 
+      city: String(city || ''), 
+      country: String(country || ''),
+      description: String(description || ''),
+      price: Number(price), 
+    });
   } catch (err: any) {
     return NextResponse.json({ error: err?.message || 'Datos inválidos' }, { status: 400 });
   }
@@ -49,6 +59,8 @@ export async function POST(request: Request) {
   const product = await Nube.create({
     name,
     city,
+    country,
+    description,
     price,
     image_url: uploadResult.secure_url,
     public_id: uploadResult.public_id,

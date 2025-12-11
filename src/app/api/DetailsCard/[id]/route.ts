@@ -54,12 +54,17 @@ export async function PUT(request: Request, { params }: any) {
     const name = data.get("name");
     const price = data.get("price");
     const city = data.get("city");
+    const country = data.get("country");
+    const description = data.get("description");
     const image = data.get("file");
+    const additionalFiles = data.getAll("files");
 
     const updateData: any = {
       name,
       price,
       city,
+      country,
+      description,
     };
 
     // Si hay imagen nueva, subirla
@@ -75,6 +80,31 @@ export async function PUT(request: Request, { params }: any) {
 
       updateData.image_url = uploadResult.secure_url;
       updateData.public_id = uploadResult.public_id;
+    }
+
+    // Procesar archivos adicionales (galería)
+    if (additionalFiles && additionalFiles.length > 0) {
+      // obtener producto actual para conservar la galería previa
+      const existing = await Nube.findById(params.id).lean();
+      const existingGallery = (existing && (existing as any).gallery) || [];
+
+      const uploaded: Array<{ public_id: string; url: string }> = [];
+
+      for (const f of additionalFiles) {
+        if (f instanceof File) {
+          const buf = Buffer.from(await f.arrayBuffer());
+          const res: any = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream(
+              { folder: "productos" },
+              (error, result) => (error ? reject(error) : resolve(result))
+            ).end(buf);
+          });
+
+          uploaded.push({ public_id: res.public_id, url: res.secure_url });
+        }
+      }
+
+      updateData.gallery = existingGallery.concat(uploaded);
     }
 
     const updated = await Nube.findByIdAndUpdate(

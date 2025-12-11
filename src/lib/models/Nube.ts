@@ -6,7 +6,10 @@ export interface INube extends Document {
   price: string;
   image_url: string;
   public_id: string;
-  city:string;
+  city: string;
+  country: string;
+  description: string;
+  gallery?: { public_id: string; url: string }[];
 }
 
 const ProductSchema = new mongoose.Schema<INube>({
@@ -14,7 +17,15 @@ const ProductSchema = new mongoose.Schema<INube>({
   price: { type: String, required: true, trim: true },
   image_url: { type: String, required: true, trim: true },
   public_id: { type: String, required: true, trim: true },
-  city: { type: String, required: true, trim:true },
+  city: { type: String, required: true, trim: true },
+  country: { type: String, required: true, trim: true },
+  description: { type: String, required: true, trim: true },
+  gallery: [
+    {
+      public_id: { type: String, trim: true },
+      url: { type: String, trim: true },
+    },
+  ],
  
 }, {
 
