@@ -20,28 +20,23 @@ const handler = NextAuth({
       },
 
       async authorize(credentials) {
-        await MongoConnection();
+        const res= await fetch ("https://work-point-9be66ef1d8d3.herokuapp.com/api/Auth/login", {
+          method:"POST",
+          headers: {"Content-Type": "application/json"},
+          body:JSON.stringify({
+            email:credentials?.email,
+            password:credentials?.password,
+          })
+        });
+        if(!res.ok) return null;
 
-        const user = await coworking.findOne({ email: credentials?.email });
-        if (!user) return null;
-
-        const isMatch = await bcrypt.compare(
-          credentials!.password,
-          user.password
-        );
-
-        if (!isMatch) return null;
-
-        return {
-          id: String (user._id),
-          name: user.name,
-          email: user.email,
-        };
+        const user = await res.json();
+        return user;
       },
     }),
   ],
 
-  callbacks: {
+/*   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -56,7 +51,7 @@ const handler = NextAuth({
       (session.user as any).name = (token as any).name;
       return session;
     },
-  },
+  }, */
 
   pages: {
     signIn: "/login",
