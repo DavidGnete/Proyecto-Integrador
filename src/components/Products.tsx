@@ -2,15 +2,27 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 
+interface Photo {
+  id: number;
+  spaceId: number;
+  urlImage: string;
+  active: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
 
 interface Product {
-  _id: string;
-  name: string;
-  price: number | string;
-  public_id: string;
-  city?: string;
-  country?: string;
-  description?: string;
+  id: number;
+  categorieId: number;
+  maxCapacity: number;
+  spaceName: string;
+  branchId: number;
+  price: number;
+  description: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  photos: Photo[];
 }
 
 export default function Products() {
@@ -22,7 +34,7 @@ export default function Products() {
     const fetchProducts = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch("/api/publicard"); 
+        const res = await fetch("https://work-point-9be66ef1d8d3.herokuapp.com/api/space/getAll"); 
 
         if (!res.ok) throw new Error("No se pudieron cargar los productos");
 
@@ -74,14 +86,18 @@ export default function Products() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
             {coworking.map((place) => (
               <ProductCard
-                key={place._id}
-                _id={place._id}
-                name={place.name}
+                key={place.id}
+                id={place.id}
+                categorieId={place.categorieId}
+                maxCapacity={place.maxCapacity}
+                spaceName={place.spaceName}
+                branchId={place.branchId}
                 price={place.price}
-                public_id={place.public_id}
-                city={place.city}
-                country={place.country}
                 description={place.description}
+                userId={place.userId}
+                createdAt={place.createdAt}
+                updatedAt={place.updatedAt}
+                photos={place.photos}
               />
             ))}
           </div>

@@ -1,102 +1,80 @@
 "use client";
-/* import MercadoPagoWallet from "./MercadoPago"; */
+
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
-import { CldImage } from "next-cloudinary";
-import { useState } from "react";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import axios from "axios";
-
-
+import React from "react";
 
 interface ProductCardProps {
-  data?: any;
-  _id: string;
-  name: string;
-  price: string | number;
-  public_id: string;
-  city?: string;
-  country?: string;
-  description?: string;
+  id:number;
+  categorieId: number;
+  maxCapacity: number;
+  spaceName: string;
+  branchId: number;
+  price: number;
+  description: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  photos: Photo[];
 }
 
-const ProductCard : React.FC<ProductCardProps> = ({ _id, name, price, public_id, data, city, country, description }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  id,
+  categorieId,
+  maxCapacity,
+  spaceName,
+  branchId,
+  price,
+  description,
+  photos,
+  userId,
+  createdAt,
+  updatedAt,
+  
+}) => {
   const router = useRouter();
-  const[showpago, setShowpago]= useState (false);
-  const [preferenceId, setPreferenceId] = useState<string | null>(null);
-  const publicKey = process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY || "";
-
-  useEffect(() => {
-    initMercadoPago(publicKey, { locale: "es-CO" });
-  }, []);
-  const createpreferenceid = async () => {
-    const response = await axios.post(
-      "/api/payment",
-      {
-        title: name,
-        unit_price: 100,
-        quantity: 1,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    if (response.data.preferenceId) {
-      setPreferenceId(response.data.preferenceId);
-    }
-  };
-
-  // Convertir precio a centavos — más robusto con strings (quita símbolos)
-  const numericPrice = typeof price === "number" ? price : Number(String(price).replace(/[^0-9.-]+/g, "")) || 0;
-  const amountInCents = Math.round(numericPrice * 100);
 
   return (
-    <>
-      <div className="w-full max-w-sm bg-white rounded-xl shadow-lg
+    <div
+      className="w-full max-w-sm bg-white rounded-xl shadow-lg
       overflow-hidden border border-gray-200
-      cursor-pointer hover:shadow-2xl transform hover:-translate-y-1 transition mb-6" onClick={() => router.push(`/product/${_id}`)}>
-        <div className="relative w-full h-56 md:h-64 lg:h-56">
-          <CldImage
-            src={public_id}
-            alt={name}
-            width={900}
-            height={400}
-            crop="fill"
-            gravity="auto"
-            className="object-cover w-full h-full"
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-          />
-        </div>
-
-        {/* Información de la ubicación */}
-        <div className="px-5 py-4">
-          <h3 className="text-lg font-semibold text-gray-900 line-clamp-2">
-            {name}
-          </h3>
-          {(city || country) && (
-            <p className="text-sm text-gray-600 mt-1">
-              {city && <span>{city}</span>}
-              {city && country && <span>, </span>}
-              {country && <span>{country}</span>}
-            </p>
-          )}
-          
-          {/* Separador */}
-          {description && <div className="border-t border-gray-200 my-3"></div>}
-          
-          {/* Descripción */}
-          {description && (
-            <p className="text-sm text-gray-700 line-clamp-3">
-              {description}
-            </p>
-          )}
-        </div>
+      cursor-pointer hover:shadow-2xl transform hover:-translate-y-1 transition mb-6 p-5"
+    >
+      <div className="w-full h-48 mb-4 overflow-hidden rounded-lg bg-gray-100">
+        <img
+          src={photos?.[0]?.urlImage || "/placeholder.jpg"}
+          alt={spaceName}
+          className="w-full h-full object-cover"
+        />
       </div>
-    </>
+      
+      <h3 className="text-xl font-semibold text-gray-900">
+        {spaceName}
+      </h3>
+
+      <p className="text-gray-700 mt-2">
+        {description}
+      </p>
+
+      <div className="mt-4 text-sm text-gray-600 space-y-1">
+        {/* <p>Categoría: {categorieId}</p> */}
+        <p>Capacidad Máxima: {maxCapacity}</p>
+       {/*  <p>Sucursal: {branchId}</p>
+        <p>Usuario Dueño: {userId}</p> */}
+        <p className="font-semibold text-gray-900">Precio: ${price}</p>
+      </div>
+
+    {/*   <div className="mt-4 text-xs text-gray-500">
+        <p>Creado: {new Date(createdAt).toLocaleString()}</p>
+        <p>Actualizado: {new Date(updatedAt).toLocaleString()}</p>
+      </div> */}
+
+      <button
+        className="mt-4 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition"
+        onClick={() => router.push(`/product/${id}`)}
+      >
+        Ver detalles
+      </button>
+    </div>
   );
 };
 

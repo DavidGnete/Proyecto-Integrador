@@ -7,31 +7,106 @@ import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
 
-  const [userName, setUserName] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const [phone, setphone] = useState("");
-  const [documentTypeId, setdocumentTypeId] = useState("");
   const [numDocument, setNumDocument] = useState("");
-  const [roleId] = useState(1); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [docError, setDocError] = useState("");
 
-  const route = useRouter();
 
-  const handleSubmit = async (e: any) => {
+  const router = useRouter();
+
+  // Función para verificar email único
+  const checkEmailUniqueness = async (email: string) => {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return; // Solo si es válido
+
+    try {
+      const res = await axios.get(
+        `https://work-point-9be66ef1d8d3.herokuapp.com/api/Auth/check-email?email=${encodeURIComponent(email)}`
+      );
+      if (res.data?.exists) {
+        setEmailError("Este correo ya está registrado");
+      } else {
+        setEmailError("");
+      }
+    } catch (error) {
+      // Si el endpoint no existe, ignorar (no mostrar error)
+      console.log("Endpoint check-email no disponible:", error);
+    }
+  };
+
+  // Función para verificar documento único
+  const checkDocumentUniqueness = async (numDocument: string) => {
+    if (!numDocument || !/^\d+$/.test(numDocument)) return; // Solo si es válido
+
+    try {
+      const res = await axios.get(
+        `https://work-point-9be66ef1d8d3.herokuapp.com/api/Auth/check-document?numDocument=${encodeURIComponent(numDocument)}`
+      );
+      if (res.data?.exists) {
+        setDocError("Este número de documento ya está registrado");
+      } else {
+        setDocError("");
+      }
+    } catch (error) {
+      // Si el endpoint no existe, ignorar
+      console.log("Endpoint check-document no disponible:", error);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Validaciones frontend
+    if (!name.trim()) {
+      toast.error("El nombre es obligatorio");
+      return;
+    }
+    if (!lastName.trim()) {
+      toast.error("El apellido es obligatorio");
+      return;
+    }
+    if (!email.trim()) {
+      toast.error("El correo es obligatorio");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Ingresa un correo válido");
+      return;
+    }
+    if (!password.trim()) {
+      toast.error("La contraseña es obligatoria");
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+    if (!numDocument.trim()) {
+      toast.error("El número de documento es obligatorio");
+      return;
+    }
+    if (!/^\d+$/.test(numDocument)) {
+      toast.error("El número de documento debe contener solo números");
+      return;
+    }
+    if (docError || emailError) {
+      toast.error("Corrige los errores antes de enviar");
+      return;
+    }
+
     const data = {
-      userName,
+      userName: email.split("@")[0],     // temporal (mejor backend)
       name,
-      lastName,
-      phone,
+      lastName,                   // valor por defecto
+      phone: "0000000000",               // valor por defecto
       email,
       password,
-      documentTypeId: Number(documentTypeId),
+      documentTypeId: 1,                 // default
       numDocument,
-      roleId
+      roleId: 1  
     };
 
     console.log("Datos que se enviarán al backend:", data);
@@ -46,12 +121,27 @@ export default function RegisterForm() {
       toast.success("Gracias por registrarte");
       console.log("Status del request:", res.status);
 
-      e.target.reset();
-      route.push("/");
+      (e.target as HTMLFormElement).reset();
+      router.push("/");
 
     } catch (error: any) {
-      console.log("Error:", error.response?.data || error.message);
-      toast.error("Error al registrar usuario");
+      console.log("Error completo:", error);
+      const badMessage = error.response?.data?.message || error.response?.data?.error || JSON.stringify(error.response?.data) || error.message;
+
+      if (badMessage && typeof badMessage === 'string') {
+        if (badMessage.toLowerCase().includes("email")) {
+          toast.error("El correo ya está registrado");
+          return;
+        }
+        if (badMessage.toLowerCase().includes("numdocument") || badMessage.toLowerCase().includes("document")) {
+          toast.error("El número de documento ya está registrado");
+          return;
+        }
+        // Si hay mensaje pero no específico, mostrarlo
+        toast.error(badMessage);
+      } else {
+        toast.error("Error al registrar usuario. Verifica los datos e intenta de nuevo.");
+      }
     }
   };
 
@@ -62,14 +152,13 @@ export default function RegisterForm() {
 
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
 
-          <input onChange={(e) => setUserName(e.target.value)} type="text" placeholder="User Name" />
-          <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Nombre" />
-          <input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Apellido" />
-          <input onChange={(e) => setNumDocument(e.target.value)} type="text" placeholder="Número de documento" />
-          <input onChange={(e) => setdocumentTypeId(e.target.value)} type="number" placeholder="Tipo documento (ej: 3)" />
-          <input onChange={(e) => setphone(e.target.value)} type="text" placeholder="Número de teléfono" />
-          <input onChange={(e) => setemail(e.target.value)} type="email" placeholder="Ingresa email" />
-          <input onChange={(e) => setpassword(e.target.value)} type="password" placeholder="Password" />
+          <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Nombre" required />
+          <input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Apellido" required />
+          <input onChange={(e) => setNumDocument(e.target.value)} type="text" placeholder="Número de documento" required onBlur={() => checkDocumentUniqueness(numDocument)} />
+          {docError && <p className="text-red-500 text-sm">{docError}</p>}
+          <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Correo" required onBlur={() => checkEmailUniqueness(email)} />
+          {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+          <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Contraseña" required />
 
           <button type="submit" className="bg-blue-600 text-white font-bold px-6 py-2 rounded border-t-4 border-green-400 cursor-pointer">
             Registrate

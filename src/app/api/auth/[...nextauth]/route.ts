@@ -1,9 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { MongoConnection } from "@/lib/db";
-import { coworking } from "@/lib/models/user";
-import bcrypt from "bcryptjs";
 
 const handler = NextAuth({
   providers: [
@@ -20,38 +17,58 @@ const handler = NextAuth({
       },
 
       async authorize(credentials) {
-        const res= await fetch ("https://work-point-9be66ef1d8d3.herokuapp.com/api/Auth/login", {
-          method:"POST",
-          headers: {"Content-Type": "application/json"},
-          body:JSON.stringify({
-            email:credentials?.email,
-            password:credentials?.password,
-          })
-        });
-        if(!res.ok) return null;
+        const res = await fetch(
+          "https://work-point-9be66ef1d8d3.herokuapp.com/api/Auth/login",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: credentials?.email,
+              password: credentials?.password,
+            }),
+          }
+        );
+
+        if (!res.ok) return null;
 
         const user = await res.json();
-        return user;
+
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          accessToken: user.token,
+          refreshToken: user.refreshToken,
+        };
       },
     }),
   ],
 
-/*   callbacks: {
+  callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.name = user.name;
+        token.email = user.email;
+        token.role = user.role;
+        token.accessToken = user.accessToken;
+        token.refreshToken = user.refreshToken;
       }
       return token;
     },
 
     async session({ session, token }) {
-      // cast to any to add custom fields without changing NextAuth types here
-      (session.user as any).id = (token as any).id;
-      (session.user as any).name = (token as any).name;
+      session.user.id = token.id;
+      session.user.name = token.name;
+      session.user.email = token.email;
+      session.user.role = token.role;
+      session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
+
       return session;
     },
-  }, */
+  },
 
   pages: {
     signIn: "/login",
