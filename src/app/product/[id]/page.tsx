@@ -9,8 +9,6 @@ import EditSpaceModal from "@/components/editcrud";
 import DeleteSpaceModal from "@/components/DeleteSpaceModal";
 import MercadoPagoWallet from "@/components/MercadoPago";
 import { useSession } from "next-auth/react";
-/* import ReservationModal from "@/components/Reservas"; */
-// ... (interfaces se mantienen igual) ...
 
 interface Product {
   id: number;
