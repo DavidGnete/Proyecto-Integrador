@@ -118,7 +118,7 @@ const handleWhatsAppClick = () => {
       </header>
       
       <section className="pt-16 md:pt-20 min-h-screen bg-gradient-to-br from-slate-50 via-white to-amber-50/30 relative overflow-hidden">
-        {/* Decorative background elements */}
+     
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-amber-100/40 to-orange-100/40 rounded-full blur-3xl"></div>
           <div className="absolute top-1/2 -left-40 w-96 h-96 bg-gradient-to-br from-slate-100/50 to-slate-200/30 rounded-full blur-3xl"></div>
