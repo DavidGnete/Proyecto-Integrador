@@ -39,6 +39,9 @@ export const authOptions: NextAuthOptions = {
           id: user._id.toString(),
           email: user.email,
           name: user.name,
+          role: 1, // default role
+          accessToken: '', // no token in DB auth
+          refreshToken: '',
         };
       },
     }),

@@ -3,6 +3,11 @@
 import { useRouter } from "next/navigation";
 import React from "react";
 
+interface Photo {
+  id: number;
+  urlImage: string;
+}
+
 interface ProductCardProps {
   id:number;
   categorieId: number;

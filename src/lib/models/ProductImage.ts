@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from "mongoose";
+/* import mongoose, { Document, Model } from "mongoose";
 import { Types } from "mongoose";
 
 export interface IProductImage extends Document {
@@ -21,3 +21,4 @@ export const ProductImage: Model<IProductImage> =
   mongoose.models.ProductImage || mongoose.model<IProductImage>("ProductImage", ProductImageSchema);
 
 export default ProductImage;
+ */

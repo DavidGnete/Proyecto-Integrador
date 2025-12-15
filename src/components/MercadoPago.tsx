@@ -1,51 +1,47 @@
+// components/MercadoPago.tsx
 "use client";
 
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function MercadoPagoWallet() {
+interface Props {
+  title: string;
+  price: number;
+  spaceId: number;
+}
+
+export default function MercadoPagoWallet({ title, price, spaceId }: Props) {
   const [preferenceId, setPreferenceId] = useState<string | null>(null);
-  const publicKey = process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY || "";
+  const publicKey = process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY!;
 
-  // Inicializar Mercado Pago una sola vez
   useEffect(() => {
     initMercadoPago(publicKey, { locale: "es-CO" });
-  }, []);
+  }, [publicKey]);
 
   const createPreferenceId = async () => {
-    const response = await axios.post(
-      "/api/payment",
-      {
-        title: "Test Product",
-        unit_price: 100,
-        quantity: 1,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const res = await axios.post("/api/payment", {
+      title,
+      unit_price: price,
+      quantity: 1,
+      spaceId,
+    });
 
-    if (response.data.preferenceId) {
-      setPreferenceId(response.data.preferenceId);
-    }
+    setPreferenceId(res.data.preferenceId);
   };
 
   return (
-    <div>
-      {/* Botón para crear la preferencia */}
+    <div className="mt-4">
       {!preferenceId && (
-        <button onClick={createPreferenceId}>
-        
+        <button
+          onClick={createPreferenceId}
+          className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold"
+        >
+          Pagar con Mercado Pago
         </button>
       )}
 
-      {/* Renderizado del widget real de Mercado Pago */}
-      {preferenceId && (
-        <Wallet initialization={{ preferenceId }} />
-      )}
+      {preferenceId && <Wallet initialization={{ preferenceId }} />}
     </div>
   );
 }

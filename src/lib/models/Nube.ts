@@ -1,4 +1,4 @@
-import mongoose, {Document, Model} from "mongoose";
+/* import mongoose, {Document, Model} from "mongoose";
 
 
 export interface INube extends Document {
@@ -36,3 +36,4 @@ const ProductSchema = new mongoose.Schema<INube>({
 
 
 export const Nube: Model<INube> = mongoose.models.Nube || mongoose.model<INube>("Nube", ProductSchema);
+ */
