@@ -99,7 +99,7 @@ return (
   
       <div className="relative flex flex-col items-center w-full 
         px-6 sm:px-8 md:px-12 lg:px-16 
-        pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 
+        pt-0 sm:pt-0 md:pt-0 lg:pt-0 xl:pt-0 
         pb-20 sm:pb-28 md:pb-32 lg:pb-40">
         
         <h2 className={`${neutonFont.className} 

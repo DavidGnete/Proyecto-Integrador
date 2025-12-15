@@ -17,11 +17,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <body>
             <Links />
-            <script src="https://upload-widget.cloudinary.com/latest/global/all.js"
-            type="text/javascript" />
-          
-            
-          {children}
+            <main className="pt-12 md:pt-16 lg:pt-20 xl:pt-24">
+              {children}
+            </main>
           </body>
         </AuthProvider>
       </SesionProvider>
