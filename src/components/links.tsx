@@ -23,7 +23,7 @@ export default function Links() {
     shadow-[0_4px_24px_rgba(0,0,0,0.08)]
     rounded-full
     px-4 sm:px-5 md:px-6 lg:px-7 xl:px-8
-    flex items-center justify-between
+    flex items-center
     z-50
     transition-all duration-300
     hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)]
