@@ -1,8 +1,3 @@
-/* import { NextResponse } from "next/server"; */
-
-// Minimal placeholder handlers for createCard route.
-// This file exists to satisfy build-time route validation.
-
 export async function POST(request: Request, { params }: any) {
   try {
     // Accept form data or JSON; we only echo back a success for now.
