@@ -200,7 +200,7 @@ const handleWhatsAppClick = () => {
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl shadow-slate-200/50 border border-white/50 overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
               
-              {/* IMÁGENES - se mantiene igual */}
+         
               <div className="p-6 md:p-8 lg:p-8">
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50 shadow-inner">
                   {images.length > 0 ? (
@@ -465,10 +465,6 @@ const handleWhatsAppClick = () => {
 
 
                     <button onClick={() => {
-                      if (!session) {
-                        setIsLoginModalOpen(true);
-                        return;
-                      }
                       handleWhatsAppClick();
                     }}
                     className="py-4 px-6 rounded-xl border-2 border-slate-200 text-slate-700 font-semibold hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
