@@ -125,13 +125,13 @@ const handleWhatsAppClick = () => {
           <div className="absolute -bottom-40 right-1/4 w-72 h-72 bg-gradient-to-br from-amber-50/50 to-yellow-100/30 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8 py-8 relative z-10">
           {/* Main Card */}
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl shadow-slate-200/50 border border-white/50 overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
               
               {/* IMÁGENES - se mantiene igual */}
-              <div className="p-6 lg:p-8">
+              <div className="p-6 md:p-8 lg:p-8">
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50 shadow-inner">
                   {images.length > 0 ? (
                     <Image
@@ -204,7 +204,7 @@ const handleWhatsAppClick = () => {
               </div>
 
               {/* INFORMACIÓN */}
-              <div className="p-6 lg:p-8 lg:pl-4 flex flex-col">
+              <div className="p-6 md:p-8 lg:p-8 lg:pl-4 flex flex-col">
                 <div className="space-y-4 flex-grow">
                   {/* Badge + Edit Button ← NUEVO BOTÓN DE EDICIÓN */}
                   <div className="flex items-center justify-between">
@@ -264,7 +264,7 @@ const handleWhatsAppClick = () => {
                     </button>
                   </div>
 
-                  <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 leading-tight">
+                  <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 leading-tight">
                     {product.spaceName}
                   </h1>
 
@@ -426,7 +426,7 @@ const handleWhatsAppClick = () => {
 
           {/* Bottom section */}
           <div className="mt-8 flex">
-            <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 leading-tight">
               {product.spaceName}
             </h1>
           </div>

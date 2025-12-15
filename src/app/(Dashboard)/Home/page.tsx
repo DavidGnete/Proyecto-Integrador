@@ -51,11 +51,11 @@ return (
 
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
         flex flex-col justify-center items-center 
-        w-[95%] sm:w-[85%] lg:w-[60%] 
+        w-[95%] sm:w-[85%] md:w-[80%] lg:w-[60%] 
         gap-4 sm:gap-6 text-center z-20 
         px-4">
         <h1 className={`${promptFont.className} 
-          text-4xl sm:text-6xl lg:text-8xl xl:text-9xl 
+          text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 
           text-white font-extrabold 
           drop-shadow-[0_0_60px_rgba(0,0,0,0.8)]
           leading-tight`}>
@@ -66,7 +66,7 @@ return (
         </h1>
         <p className={`${plusJakartaSansFont.className} 
           text-white/70 
-          text-base sm:text-lg lg:text-xl xl:text-2xl 
+          text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl 
           leading-relaxed drop-shadow-lg 
           max-w-4xl`}>
           A través de WorkPoint accederás a espacios de alojamiento, trabajo y vivienda, diseñados para inspirar, conectar personas y brindar soluciones a las dinámicas de la actualidad.
@@ -98,12 +98,12 @@ return (
 
   
       <div className="relative flex flex-col items-center w-full 
-        px-6 sm:px-8 lg:px-16 
-        pt-16 sm:pt-24 lg:pt-32 
-        pb-20 sm:pb-28 lg:pb-40">
+        px-6 sm:px-8 md:px-12 lg:px-16 
+        pt-16 sm:pt-24 md:pt-28 lg:pt-32 
+        pb-20 sm:pb-28 md:pb-32 lg:pb-40">
         
         <h2 className={`${neutonFont.className} 
-          text-5xl sm:text-7xl lg:text-8xl xl:text-9xl 
+          text-5xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl 
           text-center`}>
           <strong className="text-slate-400/90 drop-shadow-[0_0_40px_rgba(139,92,246,0.3)]">
             WORK
@@ -114,14 +114,14 @@ return (
         
         <p className={`${plusJakartaSansFont.className} 
           text-white/60 text-center 
-          text-base sm:text-lg lg:text-xl xl:text-2xl 
+          text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl 
           w-full max-w-3xl leading-relaxed
           px-2`}>
           Contamos con <span className="text-white/80">Oficinas</span>, <span className="text-white/80">Co-Offices</span>, <span className="text-white/80">Coworking</span>, Auditorios, Salas de Reuniones, y Espacios para Talleres Interactivos, en múltiples ubicaciones premium en la ciudad de Medellín.
         </p>
         <p className={`${plusJakartaSansFont.className} 
           text-white/40 text-center 
-          text-sm sm:text-base lg:text-lg xl:text-xl 
+          text-sm sm:text-base md:text-base lg:text-lg xl:text-xl 
           w-full max-w-3xl mt-4 sm:mt-6 leading-relaxed
           px-2`}>
           Durante años hemos construido una filosofía, en donde exaltamos el poder que hay detrás de hacer feliz a las personas en su día de trabajo, generando verdaderas conexiones y provocando la transferencia de conocimiento entre nuestros usuarios.
@@ -139,7 +139,7 @@ return (
         </span>
         
         <h2 className={`${neutonFont.className} 
-          text-3xl sm:text-5xl lg:text-6xl xl:text-7xl 
+          text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl 
           text-white/90 mb-3 sm:mb-4 
           text-center`}>
           Nuestros Espacios
