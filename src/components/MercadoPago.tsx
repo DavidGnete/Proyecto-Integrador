@@ -4,11 +4,13 @@
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 
 interface Props {
   title: string;
   price: number;
   spaceId: number;
+  isAuthenticated: boolean;
 }
 
 export default function MercadoPagoWallet({ title, price, spaceId }: Props) {

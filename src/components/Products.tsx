@@ -54,7 +54,7 @@ export default function Products() {
   if (isLoading) {
     return (
       <section>
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-center ">
           <p className="text-xl text-gray-600">Cargando coworkings...</p>
         </div>
       </section>
@@ -74,16 +74,13 @@ export default function Products() {
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white">
-            Nuestros espacios
-        </h2>
 
         {coworking.length === 0 ? (
           <p className="text-center text-gray-500 text-lg">
             No hay coworkings disponibles.
           </p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
             {coworking.map((place) => (
               <ProductCard
                 key={place.id}

@@ -1,25 +1,22 @@
 "use client";
 
-import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
-  const { isAuthenticated, logout } = useAuth();
+
+  const { data: session } = useSession(); 
   const router = useRouter();
 
-  const handleLogout = () => {
-    logout();
-    router.push("/login");
-  };
 
   return (
     <nav className="flex justify-between p-4">
-      {isAuthenticated ? (
+       {session?.user ? (
         // If user is logged in
         <div className="flex items-center gap-3">
-          <p>Bienvenido</p>
-          <button
-            onClick={handleLogout}
+          <p>Bienvenido {session.user.name}</p>
+           <button
+            onClick={() => signOut({ callbackUrl: "/login" })}
             className="bg-red-600 text-white px-3 py-1 rounded cursor-pointer"
           >
             Logout
@@ -47,3 +44,4 @@ export default function Navbar() {
     </nav>
   );
 }
+

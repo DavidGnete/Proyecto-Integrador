@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import { useState } from "react";
 import {
@@ -93,7 +93,7 @@ export default function ReservationModal({
         <Button>Reservar</Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-md">
+      <DialogContent className="w-500 max">
         <DialogHeader>
           <DialogTitle>Reservar {productName}</DialogTitle>
           <DialogDescription>
@@ -101,7 +101,7 @@ export default function ReservationModal({
           </DialogDescription>
         </DialogHeader>
 
-        {/* PASO 1: FECHA */}
+       
         {step === 1 && (
           <>
             <Calendar
@@ -120,7 +120,7 @@ export default function ReservationModal({
           </>
         )}
 
-        {/* PASO 2: HORA */}
+     
         {step === 2 && (
           <>
             <div className="grid grid-cols-4 gap-2 mt-4">
@@ -135,7 +135,7 @@ export default function ReservationModal({
               ))}
             </div>
 
-            {/* Aquí ya tienes fecha y hora -> botón que guarda en el endpoint */}
+         
             <Button
               className="w-full mt-4"
               disabled={!hour || !date || loading}
@@ -160,7 +160,7 @@ export default function ReservationModal({
           </>
         )}
 
-        {/* PASO 3: RESUMEN / PAGO (si quieres) */}
+  
         {step === 3 && (
           <>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -168,17 +168,8 @@ export default function ReservationModal({
               Hora: {hour}
             </p>
 
-            {/* Aquí podrías mostrar Mercado Pago si lo necesitas, 
-                pero la reserva YA está guardada en el backend */}
-            {/* 
-            <div className="mt-4">
-              <MercadoPagoWallet
-                title={productName}
-                price={price}
-                spaceId={productId}
-              />
-            </div>
-            */}
+          
+            }
           </>
         )}
 
@@ -192,4 +183,4 @@ export default function ReservationModal({
       </DialogContent>
     </Dialog>
   );
-}
+} */

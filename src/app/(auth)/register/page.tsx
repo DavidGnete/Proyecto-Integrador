@@ -146,21 +146,21 @@ export default function RegisterForm() {
   };
 
   return (
-    <div className="grid place-items-center h-screen">
-      <div className="shadow-lg p-5 border-t-4 border-green-400 bg-white ">
+    <div className="grid place-items-center min-h-screen p-4">
+      <div className="shadow-lg p-6 sm:p-8 border-t-4 border-green-400 bg-white w-full max-w-md">
         <h1 className="text-xl font-bold my-4">Registrate</h1>
 
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
 
-          <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Nombre" required />
-          <input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Apellido" required />
-          <input onChange={(e) => setNumDocument(e.target.value)} type="text" placeholder="Número de documento" required onBlur={() => checkDocumentUniqueness(numDocument)} />
+          <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Nombre" required className="p-3 border rounded" />
+          <input onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Apellido" required className="p-3 border rounded" />
+          <input onChange={(e) => setNumDocument(e.target.value)} type="text" placeholder="Número de documento" required onBlur={() => checkDocumentUniqueness(numDocument)} className="p-3 border rounded" />
           {docError && <p className="text-red-500 text-sm">{docError}</p>}
-          <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Correo" required onBlur={() => checkEmailUniqueness(email)} />
+          <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Correo" required onBlur={() => checkEmailUniqueness(email)} className="p-3 border rounded" />
           {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
-          <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Contraseña" required />
+          <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Contraseña" required className="p-3 border rounded" />
 
-          <button type="submit" className="bg-blue-600 text-white font-bold px-6 py-2 rounded border-t-4 border-green-400 cursor-pointer">
+          <button type="submit" className="bg-blue-600 text-white font-bold px-6 py-2 rounded border-t-4 border-green-400 cursor-pointer hover:bg-blue-700">
             Registrate
           </button>
 

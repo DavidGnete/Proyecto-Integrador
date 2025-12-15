@@ -1,4 +1,4 @@
-"use client"
+/* "use client"
 
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
@@ -43,9 +43,12 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg sm:rounded-lg data-[state=open]:animate-in data-[state=closed]:animate-out",
-        className
-      )}
+  "fixed left-1/2 top-1/2 z-50 grid w-full max-w-md translate-x-[-50%] translate-y-[-50%] gap-4",
+  "bg-slate-900/95 backdrop-blur-sm p-6 shadow-2xl rounded-2xl", // fondo, blur, sombra y bordes
+  "data-[state=open]:animate-in data-[state=closed]:animate-out",
+  className
+)}
+
       {...props}
     >
       {children}
@@ -126,3 +129,4 @@ export {
   DialogTitle,
   DialogDescription,
 }
+ */

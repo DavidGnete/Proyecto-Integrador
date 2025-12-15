@@ -1,9 +1,10 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (token: string) => void;
+  login: () => void;
   logout: () => void;
 }
 
@@ -18,22 +19,15 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { data: session } = useSession();
+  const isAuthenticated = !!session;
 
-  useEffect(() => {
-    // Verificar token en localStorage al cargar
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
-  }, []);
-
-  const login = (token: string) => {
-    localStorage.setItem("token", token);
-    setIsAuthenticated(true);
+  const login = () => {
+    // Not needed, handled by NextAuth
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    setIsAuthenticated(false);
+    signOut({ callbackUrl: "/login" });
   };
 
   return (

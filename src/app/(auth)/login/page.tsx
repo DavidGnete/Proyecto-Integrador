@@ -2,49 +2,40 @@
 import { ToastContainer, toast } from 'react-toastify';
 import Link from "next/link";
 import { useState } from "react";
-import axios from "axios"
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
+import { signIn } from "next-auth/react";
 
 export default function Navbar() {
   
   const [email, setemail] =useState ("");
   const [password, setpasswrod] = useState ("");
   const route = useRouter();
-  const { login } = useAuth();
 
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "https://work-point-9be66ef1d8d3.herokuapp.com/api/Auth/login",
-        { email, password },
-        { headers: { "Content-Type": "application/json" } }
-      );
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
 
-      // Asumir que el backend devuelve un token o algo
-      console.log("Login exitoso:", res.data);
-
-      // Guardar token en localStorage si viene
-      if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
-        login(res.data.token);
+      if (result?.ok) {
+        toast.success("Inicio de sesión exitoso");
+        route.push("/Home");
+      } else {
+        toast.error("Usuario o contraseña incorrectos");
       }
-
-      toast.success("Inicio de sesión exitoso");
-      route.push("/Home");
-
     } catch (error: any) {
       console.log("Error en login:", error);
-      const badMessage = error.response?.data?.message || error.response?.data?.error || error.message;
-      toast.error(badMessage || "Usuario o contraseña incorrectos");
+      toast.error("Error en el servidor");
     }
   };
   return (
-    <div className="grid place-items-center h-screen">
-      <div className="shadow-lg p-5  border-t-4 border-green-400 bg-white border-">
+    <div className="grid place-items-center min-h-screen p-4">
+      <div className="shadow-lg p-6 sm:p-8 border-t-4 border-green-400 bg-white border- w-full max-w-md">
         <h1 className="text-xl font-bold my-4">Ingresa a la plataforma</h1>
         
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
@@ -53,14 +44,17 @@ export default function Navbar() {
         onChange={(e) =>setemail(e.target.value)}
         type="email" 
         
-        placeholder="ingresa email" />
+        placeholder="ingresa email"
+        className="p-3 border rounded"
+        />
         <input
         onChange={(e)=> setpasswrod(e.target.value)}
         type="password"
         placeholder="password" 
+        className="p-3 border rounded"
         /> 
         <button
-          className="bg-blue-600 text-white font-bold px-6 py-2 rounded border-t-4 border-green-400 cursor-pointer"
+          className="bg-blue-600 text-white font-bold px-6 py-2 rounded border-t-4 border-green-400 cursor-pointer hover:bg-blue-700"
         >
           Sign In
         </button>

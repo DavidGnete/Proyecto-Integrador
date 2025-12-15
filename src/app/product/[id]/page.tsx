@@ -5,11 +5,11 @@ import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Links from "@/components/links";
 import Products from "@/components/Products";
-import { useAuth } from "@/context/AuthContext";
 import EditSpaceModal from "@/components/editcrud";
 import DeleteSpaceModal from "@/components/DeleteSpaceModal";
 import MercadoPagoWallet from "@/components/MercadoPago";
-import ReservationModal from "@/components/Reservas";
+import { useSession } from "next-auth/react";
+/* import ReservationModal from "@/components/Reservas"; */
 // ... (interfaces se mantienen igual) ...
 
 interface Product {
@@ -39,9 +39,10 @@ export default function ProductPage() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false); // ← NUEVO ESTADO
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // ← NUEVO ESTADO
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
 
-  const { isAuthenticated } = useAuth();
+  const { data: session } = useSession();
 
   // seccion whattsap
 const handleWhatsAppClick = () => {
@@ -380,11 +381,11 @@ const handleWhatsAppClick = () => {
 
                     <button
                           onClick={() => {
-                            if (!isAuthenticated) {
-                              router.push('/login');
-                            } else {
-                              setIsReservationModalOpen(true);
+                            if (!session) {
+                              setIsLoginModalOpen(true);
+                              return;
                             }
+                            setIsReservationModalOpen(true);
                           }}
                           className="py-4 px-6 rounded-xl bg-gradient-to-r from-slate-900 to-slate-800 text-white font-semibold hover:from-slate-800 hover:to-slate-700 hover:shadow-lg hover:shadow-slate-300/30 transition-all duration-300 flex items-center justify-center gap-2"
                         >
@@ -395,7 +396,13 @@ const handleWhatsAppClick = () => {
                         </button>
 
 
-                    <button onClick={handleWhatsAppClick}
+                    <button onClick={() => {
+                      if (!session) {
+                        setIsLoginModalOpen(true);
+                        return;
+                      }
+                      handleWhatsAppClick();
+                    }}
                     className="py-4 px-6 rounded-xl border-2 border-slate-200 text-slate-700 font-semibold hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 flex items-center justify-center gap-2">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -403,14 +410,13 @@ const handleWhatsAppClick = () => {
                       
                       Contactar
                     </button>
-
-                    {isAuthenticated && (
+                    
                     <MercadoPagoWallet
                     title={product.spaceName}
                     price={numericPrice}
                     spaceId={product.id}
+                  
                     />
-                    )}
 
                   </div>
                 </div>
@@ -453,13 +459,31 @@ const handleWhatsAppClick = () => {
           onSuccess={handleDeleteSuccess}
         />
       )}
-      {product && (
-      <ReservationModal
-        isOpen={isReservationModalOpen}
-        onClose={() => setIsReservationModalOpen(false)}
-        product={product}
-      />
-)}
+
+      {/* Modal de Login Requerido */}
+      {isLoginModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full mx-4">
+            <h2 className="text-xl font-bold mb-4">Iniciar Sesión Requerido</h2>
+            <p className="mb-4">Debes iniciar sesión para poder reservar este espacio.</p>
+            <div className="flex gap-2">
+              <button 
+                onClick={() => { setIsLoginModalOpen(false); router.push('/login'); }} 
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              >
+                Iniciar Sesión
+              </button>
+              <button 
+                onClick={() => setIsLoginModalOpen(false)} 
+                className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    
 
     </main>
   );
