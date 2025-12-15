@@ -193,7 +193,7 @@ const handleWhatsAppClick = () => {
                           alt={`Thumbnail ${idx + 1}`}
                           width={64}
                           height={64}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover cursor-pointer"
                         />
                       </button>
                     ))}
@@ -201,7 +201,6 @@ const handleWhatsAppClick = () => {
                 )}
               </div>
 
-              {/* INFORMACIÓN */}
               <div className="p-6 md:p-8 lg:p-8 lg:pl-4 flex flex-col">
                 <div className="space-y-4 flex-grow">
                   {/* Badge + Edit Button ← NUEVO BOTÓN DE EDICIÓN */}
@@ -219,7 +218,7 @@ const handleWhatsAppClick = () => {
                       </span>
                     </div>
                     
-                    {/* ← BOTÓN DE EDICIÓN ELEGANTE */}
+                  
                     <button
                       onClick={() => setIsEditModalOpen(true)}
                       className="group flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-900 text-slate-600 hover:text-white rounded-xl transition-all duration-300 shadow-sm hover:shadow-lg"
@@ -240,7 +239,7 @@ const handleWhatsAppClick = () => {
                       <span className="text-sm font-medium">Editar</span>
                     </button>
 
-                    {/* ← BOTÓN DE ELIMINACIÓN */}
+                  
                     <button
                       onClick={() => setIsDeleteModalOpen(true)}
                       className="group flex items-center gap-2 px-4 py-2 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white rounded-xl transition-all duration-300 shadow-sm hover:shadow-lg"
@@ -353,7 +352,6 @@ const handleWhatsAppClick = () => {
                   </div>
                 </div>
 
-                {/* Price & CTA Section - se mantiene igual */}
                 <div className="mt-8 pt-6 border-t border-slate-100">
                   <div className="flex items-end justify-between mb-6">
                     <div>

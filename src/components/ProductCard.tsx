@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       transition-all duration-300 ease-out
       hover:shadow-xl hover:border-transparent hover:-translate-y-1"
     >
-      {/* Imagen */}
+      
       <div className="relative w-full aspect-[16/10] overflow-hidden">
         <img
           src={photos?.[0]?.urlImage || "/placeholder.jpg"}
@@ -121,7 +121,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           py-3 px-6 rounded-lg
           font-medium text-sm
           hover:bg-emerald-600
-          transition-colors duration-300"
+          transition-colors duration-300 cursor-pointer"
           onClick={() => router.push(`/product/${id}`)}
         >
           Ver disponibilidad

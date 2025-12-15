@@ -37,7 +37,7 @@ export default function MercadoPagoWallet({ title, price, spaceId }: Props) {
       {!preferenceId && (
         <button
           onClick={createPreferenceId}
-          className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold"
+          className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold cursor-pointer hover:from-amber-600 hover:to-orange-600 transition-all duration-300"
         >
           Pagar con Mercado Pago
         </button>
