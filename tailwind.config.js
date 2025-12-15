@@ -8,6 +8,10 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@heroui/theme/dist/components/(button|ripple|spinner).js",
   ],
+  safelist: [
+    // Agregar clases responsive comunes para evitar purging
+    { pattern: /^(sm|md|lg|xl|2xl):.*/ },
+  ],
   theme: {
     extend: {
       fontFamily: {
