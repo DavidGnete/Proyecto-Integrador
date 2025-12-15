@@ -14,20 +14,22 @@ export default function Links() {
     <>
       <nav
         className="
-          fixed top-2 md:top-3 lg:top-4 left-1/2 -translate-x-1/2
-          w-[90%] md:w-[95%] max-w-4xl md:max-w-5xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl
-          bg-white/90 backdrop-blur-xl
-          border border-slate-200/50 
-          shadow-[0_4px_24px_rgba(0,0,0,0.08)]
-          rounded-full
-          py-2 md:py-2 lg:py-2.5 xl:py-3 px-4 sm:px-5 md:px-6 lg:px-7 xl:px-8
-          z-50
-          transition-all duration-300
-          hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)]
+    fixed top-2 md:top-3 lg:top-4 left-1/2 -translate-x-1/2
+    h-14 md:h-16 lg:h-16 xl:h-18
+    w-[90%] md:w-[95%]
+    max-w-4xl md:max-w-5xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl
+    bg-white/90 backdrop-blur-xl
+    border border-slate-200/50
+    shadow-[0_4px_24px_rgba(0,0,0,0.08)]
+    rounded-full
+    px-4 sm:px-5 md:px-6 lg:px-7 xl:px-8
+    flex items-center justify-between
+    z-50
+    transition-all duration-300
+    hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)]
         "
       >
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+        <div className="flex w-full items-center justify-between">
           <Link href="/Home" className="flex items-center gap-2 group">
             <div className="w-10 h-10 bg-gradient-to-br from-slate-900 to-slate-700 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

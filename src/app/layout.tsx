@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <body>
             <Links />
-            <main className="pt-12 md:pt-16 lg:pt-20 xl:pt-24">
+            <main>
               {children}
             </main>
           </body>
