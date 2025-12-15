@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+/* import { NextResponse } from "next/server";
 import { MongoConnection } from "@/lib/db";
 import cloudinary from "@/lib/conection/cloudinary";
 import { ProductImage } from "@/lib/models/ProductImage";
@@ -83,3 +83,6 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: err.message || "Error" }, { status: 500 });
   }
 }
+ */
+
+export {};

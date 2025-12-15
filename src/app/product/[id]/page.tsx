@@ -415,7 +415,7 @@ const handleWhatsAppClick = () => {
                     title={product.spaceName}
                     price={numericPrice}
                     spaceId={product.id}
-                  
+                    isAuthenticated={!!session}
                     />
 
                   </div>

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+/* import { NextResponse } from "next/server";
 import { Nube } from "@/lib/models/Nube";
 import { MongoConnection } from "@/lib/db";
 import cloudinary from "@/lib/conection/cloudinary";
@@ -142,3 +142,6 @@ export async function DELETE(request: Request, { params }: any) {
   return NextResponse.json({ message: "Eliminado" });
 }
 
+ */
+
+export {};

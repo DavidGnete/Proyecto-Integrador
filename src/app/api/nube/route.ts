@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
+/* import { NextResponse } from "next/server";
 import cloudinary from "@/lib/conection/cloudinary";
-/* ADDED */
+
 import * as yup from 'yup';
 import { Nube, INube } from "@/lib/models/Nube";
 import { MongoConnection } from "@/lib/db";
@@ -17,7 +17,6 @@ export async function POST(request: Request) {
   const price = data.get("price");
   const description = data.get("description");
 
-  // Coerce FormDataEntryValue to typed variables
   const nameStr: string = typeof name === 'string' ? name.trim() : String(name || '');
   const cityStr: string = typeof city === 'string' ? city.trim() : String(city || '');
   const countryStr: string = typeof country === 'string' ? country.trim() : String(country || '');
@@ -32,7 +31,7 @@ export async function POST(request: Request) {
   });
 
   try {
-    // Validate using the coerced values
+
     await productSchema.validate({ 
       name: nameStr,
       city: cityStr,
@@ -75,9 +74,11 @@ export async function POST(request: Request) {
     public_id: uploadResult.public_id,
   }) as INube;
 
-  // Aquí agregas el return de éxito
+
   return NextResponse.json({
     message: 'Producto creado correctamente',
     product: product,  
   }, { status: 201 });
-}
+} */
+
+export {};

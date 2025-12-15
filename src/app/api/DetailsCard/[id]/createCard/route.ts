@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+/* import { NextResponse } from "next/server"; */
 
 // Minimal placeholder handlers for createCard route.
 // This file exists to satisfy build-time route validation.
@@ -6,16 +6,16 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request, { params }: any) {
   try {
     // Accept form data or JSON; we only echo back a success for now.
-    return NextResponse.json({ message: "createCard POST OK", params }, { status: 201 });
+    return Response.json({ message: "createCard POST OK", params }, { status: 201 });
   } catch (err: any) {
-    return NextResponse.json({ error: err?.message || "Error" }, { status: 500 });
+    return Response.json({ error: err?.message || "Error" }, { status: 500 });
   }
 }
 
 export async function GET(request: Request, { params }: any) {
   try {
-    return NextResponse.json({ message: "createCard GET OK", params }, { status: 200 });
+    return Response.json({ message: "createCard GET OK", params }, { status: 200 });
   } catch (err: any) {
-    return NextResponse.json({ error: err?.message || "Error" }, { status: 500 });
+    return Response.json({ error: err?.message || "Error" }, { status: 500 });
   }
 }

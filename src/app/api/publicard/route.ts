@@ -1,4 +1,4 @@
-// app/api/products/route.ts
+/* // app/api/products/route.ts
 import { NextResponse } from "next/server";
 import { Nube } from "@/lib/models/Nube";
 import { MongoConnection } from "@/lib/db";
@@ -33,4 +33,6 @@ export async function GET() {
       { status: 500 }
     );
   }
-}
+} */
+
+export {};

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+/* import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { MongoConnection } from "@/lib/db";
 import { coworking } from "@/lib/models/user";
@@ -43,3 +43,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
+ */
+
+export {};

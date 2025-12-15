@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import { useState } from "react";
 import {
@@ -44,7 +44,7 @@ export default function ReservationModal({
           </DialogDescription>
         </DialogHeader>
 
-        {/* PASO 1: FECHA */}
+       
         {step === 1 && (
           <>
             <Calendar mode="single" selected={date} onSelect={setDate} className="mt-4" />
@@ -54,7 +54,7 @@ export default function ReservationModal({
           </>
         )}
 
-        {/* PASO 2: HORA */}
+   
         {step === 2 && (
           <>
             <div className="grid grid-cols-4 gap-2 mt-4">
@@ -74,7 +74,7 @@ export default function ReservationModal({
           </>
         )}
 
-        {/* PASO 3: CONFIRMAR Y MERCADO PAGO */}
+  
         {step === 3 && (
           <>
             <p className="mt-2 text-sm text-muted-foreground">
@@ -82,7 +82,7 @@ export default function ReservationModal({
               Hora: {hour}
             </p>
 
-            {/* Aquí mostramos directamente el widget */}
+        
             <div className="mt-4">
               <MercadoPagoWallet
                 title={productName}
@@ -103,4 +103,4 @@ export default function ReservationModal({
       </DialogContent>
     </Dialog>
   );
-}
+} */

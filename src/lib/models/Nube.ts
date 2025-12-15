@@ -32,8 +32,8 @@ const ProductSchema = new mongoose.Schema<INube>({
   timestamps: { createdAt: "createdAt", updatedAt: false },
   // explicitly use the existing MongoDB collection named 'Product'
   collection: 'Nube' /* ADDED */
-});
 
 
-export const Nube: Model<INube> = mongoose.models.Nube || mongoose.model<INube>("Nube", ProductSchema);
- */
+
+/* export const Nube: Model<INube> = mongoose.models.Nube || mongoose.model<INube>("Nube", ProductSchema);
+ */ 
