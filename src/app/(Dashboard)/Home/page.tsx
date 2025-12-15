@@ -2,6 +2,7 @@
 import {Prompt, Plus_Jakarta_Sans, Neuton} from "next/font/google";
 import Button from "@/components/Button";
 import Products from "@/components/Products";
+import { useRef } from "react";
 
 
 const promptFont = Prompt({ subsets: ["latin"], weight: "400" });
@@ -9,6 +10,11 @@ const plusJakartaSansFont = Plus_Jakarta_Sans({ subsets: ["latin"], weight: "200
 const neutonFont = Neuton({ subsets: ["latin"], weight: "400" });
 export default function Home(){
 
+const productsRef = useRef<HTMLDivElement>(null);
+
+const scrollpToProducts = () => {
+  productsRef.current?.scrollIntoView({ behavior: "smooth" });
+}
 return (
   <div className="relative w-full bg-black">
     
@@ -25,9 +31,6 @@ return (
     </div>
 
 
-    {/* ═══════════════════════════════════════════════════════════════════
-        SECCIÓN VIDEO HERO
-    ═══════════════════════════════════════════════════════════════════ */}
     <div className="relative z-10 w-full h-screen">
       <video
         className="hidden sm:block w-full h-full object-cover opacity-50"
@@ -44,10 +47,8 @@ return (
       {/* Overlay oscuro */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* Gradiente inferior - CLAVE para la transición suave */}
       <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black via-black/80 to-transparent" />
 
-      {/* Texto sobre el video */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
         flex flex-col justify-center items-center 
         w-[95%] sm:w-[85%] lg:w-[60%] 
@@ -74,7 +75,9 @@ return (
             </span>
           </span>
         </p>
-        <Button variant="secondary" className="shadow-[0_0_40px_rgba(0,0,0,0.5)] mt-2 sm:mt-4">
+        <Button
+          onClick={() => { scrollpToProducts()}}
+        variant="secondary" className="shadow-[0_0_40px_rgba(0,0,0,0.5)] mt-2 sm:mt-4">
           Agenda tu visita
         </Button>
       </div>
@@ -84,7 +87,7 @@ return (
       
       <div className="absolute inset-0 bg-black" />
       
-      {/* Neblina decorativa que conecta todo */}
+      
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-violet-900/15 rounded-full blur-[200px]" />
       <div className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-slate-800/30 rounded-full blur-[150px]" />
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-slate-700/20 rounded-full blur-[180px]" />
@@ -141,13 +144,13 @@ return (
           Nuestros Espacios
         </h2>
         
-        <div className="w-12 sm:w-16 h-px bg-white/20 mb-8 sm:mb-12" />
+        <div ref={productsRef} className="w-12 sm:w-16 h-px bg-white/20 mb-8 sm:mb-12" />
         
         <Products />
       </div>
 
 
-      {/* Gradiente final inferior */}
+     
       <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none" />
     </div>
 
