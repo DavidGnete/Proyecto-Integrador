@@ -49,7 +49,7 @@ return (
 
       <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-black via-black/80 to-transparent" />
 
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+      <div className="absolute top-[45%] md:top-1/2 lg:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
         flex flex-col justify-center items-center 
         w-[95%] sm:w-[85%] md:w-[80%] lg:w-[60%] 
         gap-4 sm:gap-6 text-center z-20 
@@ -99,7 +99,7 @@ return (
   
       <div className="relative flex flex-col items-center w-full 
         px-6 sm:px-8 md:px-12 lg:px-16 
-        pt-16 sm:pt-24 md:pt-28 lg:pt-32 
+        pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 
         pb-20 sm:pb-28 md:pb-32 lg:pb-40">
         
         <h2 className={`${neutonFont.className} 

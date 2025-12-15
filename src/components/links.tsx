@@ -14,13 +14,13 @@ export default function Links() {
     <>
       <nav
         className="
-          fixed top-4 left-1/2 -translate-x-1/2
-          w-[95%] max-w-5xl md:max-w-6xl
+          fixed top-2 md:top-4 left-1/2 -translate-x-1/2
+          w-[95%] max-w-4xl md:max-w-5xl xl:max-w-6xl
           bg-white/90 backdrop-blur-xl
           border border-slate-200/50 
           shadow-[0_4px_24px_rgba(0,0,0,0.08)]
           rounded-full
-          py-3 md:py-2.5 px-4 sm:px-6 md:px-8
+          py-2 md:py-2.5 xl:py-3 px-4 sm:px-6 md:px-8 xl:px-8
           z-50
           transition-all duration-300
           hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)]
@@ -34,7 +34,7 @@ export default function Links() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>
-            <span className="text-xl md:text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent hidden sm:block">
+            <span className="text-lg md:text-lg xl:text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent hidden sm:block">
               WorkPoint
             </span>
           </Link>
@@ -44,7 +44,7 @@ export default function Links() {
             <Link 
               href="/Home" 
               className="
-                relative px-5 md:px-4 py-2.5 md:py-2 
+                relative px-4 md:px-4 xl:px-5 py-2 md:py-2 xl:py-2.5 
                 text-slate-600 font-medium text-sm
                 rounded-full
                 hover:bg-slate-100 hover:text-slate-900
@@ -64,7 +64,7 @@ export default function Links() {
               <Link 
                 href="/config" 
                 className="
-                  relative px-5 md:px-4 py-2.5 md:py-2 
+                  relative px-4 md:px-4 xl:px-5 py-2 md:py-2 xl:py-2.5 
                   text-slate-600 font-medium text-sm
                   rounded-full
                   hover:bg-slate-100 hover:text-slate-900
