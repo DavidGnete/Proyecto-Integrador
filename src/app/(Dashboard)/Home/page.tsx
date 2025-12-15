@@ -18,13 +18,13 @@ const scrollpToProducts = () => {
 return (
   <div className="relative w-full bg-black">
     
-    {/* 🌫️ FONDO NEBLINA GLOBAL - Cubre toda la página */}
+
     <div className="fixed inset-0 z-0 pointer-events-none">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-950 to-black" />
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-slate-800/40 rounded-full blur-[200px]" />
       <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-slate-700/30 rounded-full blur-[180px]" />
       <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-violet-900/20 rounded-full blur-[150px]" />
-      {/* Textura ruido */}
+    
       <div className="absolute inset-0 opacity-[0.02]" 
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")` }} 
       />
@@ -59,15 +59,17 @@ return (
           text-white font-extrabold 
           drop-shadow-[0_0_60px_rgba(0,0,0,0.8)]
           leading-tight`}>
-          Connecting <br />
-          <span className="text-white/90">great people</span>
+          Encuentra <br />
+          <span className="text-white/90">Tu</span>
+          <span className="text-slate-400/90 "> WorkPoint</span>
+
         </h1>
         <p className={`${plusJakartaSansFont.className} 
           text-white/70 
           text-base sm:text-lg lg:text-xl xl:text-2xl 
           leading-relaxed drop-shadow-lg 
           max-w-4xl`}>
-          A través de NEWO accederás a espacios de alojamiento, trabajo y vivienda, diseñados para inspirar, conectar personas y brindar soluciones a las dinámicas de la actualidad.
+          A través de WorkPoint accederás a espacios de alojamiento, trabajo y vivienda, diseñados para inspirar, conectar personas y brindar soluciones a las dinámicas de la actualidad.
           <span className="hidden sm:inline">
             <br /><br />
             <span className="text-white/50">
@@ -103,13 +105,12 @@ return (
         <h2 className={`${neutonFont.className} 
           text-5xl sm:text-7xl lg:text-8xl xl:text-9xl 
           text-center`}>
-          <strong className="text-violet-400/90 drop-shadow-[0_0_40px_rgba(139,92,246,0.3)]">
-            WORKPO
+          <strong className="text-slate-400/90 drop-shadow-[0_0_40px_rgba(139,92,246,0.3)]">
+            WORK
           </strong>
-          <span className="text-white/80">INT</span>
+          <span className="text-white/80">POINT</span>
         </h2>
-        
-        <div className="w-24 sm:w-32 lg:w-40  bg-gradient-to-r from-transparent via-violet-500/50 to-transparent my-6 " />
+        <div  className="w-30 sm:w-160 h-px bg-white/20 mb-8 sm:mb-12 via-violet-500/50 to-transparent my-6" />
         
         <p className={`${plusJakartaSansFont.className} 
           text-white/60 text-center 
