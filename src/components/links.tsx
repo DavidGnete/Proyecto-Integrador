@@ -27,7 +27,7 @@ export default function Links() {
         "
       >
         <div className="flex items-center justify-between">
-          {/* Logo */}
+   
           <Link href="/Home" className="flex items-center gap-2 group">
             <div className="w-10 h-10 bg-gradient-to-br from-slate-900 to-slate-700 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ export default function Links() {
             </span>
           </Link>
 
-          {/* Desktop Navigation Links */}
+
           <div className="hidden md:flex items-center gap-1">
             <Link 
               href="/Home" 
@@ -84,7 +84,7 @@ export default function Links() {
             <Navbar />
           </div>
 
-          {/* Mobile Hamburger Menu */}
+         
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 rounded-full hover:bg-slate-100 transition-colors"
@@ -96,7 +96,6 @@ export default function Links() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setIsMenuOpen(false)} />
@@ -126,6 +125,7 @@ export default function Links() {
                   Publica Tu coworkPoint
                 </Link>
               )}
+
 
               <div className="border-t pt-4">
                 <Navbar />

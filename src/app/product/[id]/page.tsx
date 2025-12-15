@@ -9,6 +9,13 @@ import EditSpaceModal from "@/components/editcrud";
 import DeleteSpaceModal from "@/components/DeleteSpaceModal";
 import MercadoPagoWallet from "@/components/MercadoPago";
 import { useSession } from "next-auth/react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
+import { toast, ToastContainer } from "react-toastify";
+import { DateSelectArg } from "@fullcalendar/core";
 
 interface Product {
   id: number;
@@ -22,6 +29,14 @@ interface Product {
   photos: any[];
   createdAt: string;
   updatedAt: string;
+}
+
+interface CreateReservation {
+  spaceId: number;
+  userId: number;
+  start: string;
+  end: string;
+  notes: string;
 }
 
 export default function ProductPage() {
@@ -38,13 +53,17 @@ export default function ProductPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // ← NUEVO ESTADO
   const [isReservationModalOpen, setIsReservationModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [selectedRange, setSelectedRange] = useState<{
+    start: Date;
+    end: Date;
+  } | null>(null);
 
 
   const { data: session } = useSession();
 
   // seccion whattsap
 const handleWhatsAppClick = () => {
-    const message = encodeURIComponent("Hola, me gustaría saber mas sobre este producto");
+    const message = encodeURIComponent("Hola, me gustaría saber mas sobre los coworkings que ofrece workPoint");
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
   };
 
@@ -79,6 +98,57 @@ const handleWhatsAppClick = () => {
     loadProduct();
   }, [id]);
 
+  const handleSelect = (info: DateSelectArg) => {
+    setSelectedRange({
+      start: info.start,
+      end: info.end,
+    });
+  };
+
+  const handleReservation = async () => {
+    if (!selectedRange) {
+      toast.error("Por favor selecciona un rango de tiempo");
+      return;
+    }
+
+    if (!session?.user?.id) {
+      toast.error("Usuario no autenticado");
+      return;
+    }
+
+    const payload: CreateReservation = {
+      spaceId: product!.id,
+      userId: parseInt(session.user.id),
+      start: selectedRange.start.toISOString(),
+      end: selectedRange.end.toISOString(),
+      notes: "Reserva desde la página del producto",
+    };
+
+    try {
+      const response = await fetch(
+        "https://work-point-9be66ef1d8d3.herokuapp.com/api/Booking",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        toast.error("Error al crear la reserva");
+        return;
+      }
+
+      toast.success("Reserva creada con éxito");
+      setIsReservationModalOpen(false);
+      setSelectedRange(null);
+    } catch (error) {
+      toast.error("Error al crear la reserva");
+    }
+  };
+
   // ← NUEVA FUNCIÓN para manejar actualización exitosa
   const handleUpdateSuccess = (updatedProduct: Product) => {
     setProduct(updatedProduct);
@@ -111,6 +181,8 @@ const handleWhatsAppClick = () => {
 
   return (
     <main>
+      <ToastContainer />
+
       <header className="sticky top-0 z-50 bg-white shadow-sm">
         <Links />
       </header>
@@ -474,6 +546,59 @@ const handleWhatsAppClick = () => {
                 className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
               >
                 Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de Reserva */}
+      {isReservationModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Reservar {product?.spaceName}</h2>
+              <button
+                onClick={() => setIsReservationModalOpen(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="min-h-[400px] mb-4">
+              <FullCalendar
+                plugins={[
+                  dayGridPlugin,
+                  interactionPlugin,
+                  timeGridPlugin,
+                  listPlugin,
+                ]}
+                initialView="timeGridWeek"
+                headerToolbar={{
+                  left: "prev,next today",
+                  center: "title",
+                  right: "dayGridMonth,timeGridWeek",
+                }}
+                events={[]}
+                selectable={true}
+                select={handleSelect}
+                selectMirror={true}
+              />
+            </div>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setIsReservationModalOpen(false)}
+                className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleReservation}
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              >
+                Confirmar Reserva
               </button>
             </div>
           </div>
