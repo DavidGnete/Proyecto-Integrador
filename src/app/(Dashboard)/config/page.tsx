@@ -77,7 +77,7 @@ const router = useRouter();
       console.log("[create-space] payload:", payload);
 
       const response = await axios.post(
-        "https://work-point-9be66ef1d8d3.herokuapp.com/api/space/create",
+        "http://72.61.6.155:500/api/space/create",
         payload,
         { headers: { "Content-Type": "application/json" } }
       );
