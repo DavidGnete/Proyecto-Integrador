@@ -55,7 +55,7 @@ return (
         gap-4 sm:gap-6 text-center z-20 
         px-4">
         <h1 className={`${promptFont.className} 
-          text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 
+          text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 
           text-white font-extrabold 
           drop-shadow-[0_0_60px_rgba(0,0,0,0.8)]
           leading-tight`}>
@@ -66,16 +66,11 @@ return (
         </h1>
         <p className={`${plusJakartaSansFont.className} 
           text-white/70 
-          text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl 
+          text-base sm:text-base md:text-lg lg:text-lg xl:text-xl
           leading-relaxed drop-shadow-lg 
           max-w-4xl`}>
           A través de WorkPoint accederás a espacios de alojamiento, trabajo y vivienda, diseñados para inspirar, conectar personas y brindar soluciones a las dinámicas de la actualidad.
-          <span className="hidden sm:inline">
-            <br /><br />
-            <span className="text-white/50">
-              Te acercamos a una comunidad, para rodearte de personas apasionadas, enriquecer tu estilo de vida y acceder a oportunidades profesionales y de negocio.
-            </span>
-          </span>
+        
         </p>
         <Button
           onClick={() => { scrollpToProducts()}}
@@ -103,7 +98,7 @@ return (
         pb-20 sm:pb-28 md:pb-32 lg:pb-40">
         
         <h2 className={`${neutonFont.className} 
-          text-5xl sm:text-7xl md:text-7xl lg:text-8xl xl:text-9xl 
+          text-4xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 
           text-center`}>
           <strong className="text-slate-400/90 drop-shadow-[0_0_40px_rgba(139,92,246,0.3)]">
             WORK
