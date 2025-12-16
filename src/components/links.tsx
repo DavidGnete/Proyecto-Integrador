@@ -60,13 +60,13 @@ export default function Links() {
           </Link>
 
           {/* ===== LINKS DESKTOP ===== */}
-          <div className="hidden lg:flex items-center gap-1 lg:gap-2">
+          <div className="hidden md:flex items-center gap-1">
             
             {/* Link Inicio */}
             <Link 
               href="/Home" 
               className="
-                px-3 lg:px-4 py-2
+                px-3 py-2
                 text-slate-600 font-medium text-sm
                 rounded-full
                 hover:bg-slate-100 hover:text-slate-900
@@ -87,7 +87,7 @@ export default function Links() {
                   d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" 
                 />
               </svg>
-              <span className="hidden lg:inline">Inicio</span>
+              <span className="hidden">Inicio</span>
             </Link>
 
             {/* Link Publicar (solo autenticados) */}
@@ -95,7 +95,7 @@ export default function Links() {
               <Link 
                 href="/config" 
                 className="
-                  px-3 lg:px-4 py-2
+                  px-3 py-2
                   text-slate-600 font-medium text-sm
                   rounded-full
                   hover:bg-slate-100 hover:text-slate-900
@@ -116,12 +116,12 @@ export default function Links() {
                     d="M12 4v16m8-8H4" 
                   />
                 </svg>
-                <span className="hidden lg:inline">Publicar</span>
+                <span className="hidden">Publicar</span>
               </Link>
             )}
 
             {/* Separador */}
-            <div className="w-px h-6 bg-slate-200 mx-1 lg:mx-2" />
+            <div className="w-px h-6 bg-slate-200 mx-1" />
 
             {/* Componente Navbar (auth buttons) */}
             <Navbar />
@@ -131,7 +131,7 @@ export default function Links() {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="
-              lg:hidden 
+              md:hidden 
               p-2 
               rounded-lg
               hover:bg-slate-100 
@@ -167,7 +167,7 @@ export default function Links() {
 
       {/* ========== MENÚ MÓVIL ========== */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden">
+        <div className="fixed inset-0 z-40 md:hidden">
           
           {/* Overlay */}
           <div 
