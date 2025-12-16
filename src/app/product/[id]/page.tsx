@@ -204,10 +204,11 @@ const handleWhatsAppClick = () => {
           
           <div className="mt-8 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl shadow-slate-300/40 border border-slate-200 overflow-hidden">
               
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
             
               <div className="p-6 md:p-8 lg:p-8">
+                
                 <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-50 shadow-inner">
                   {images.length > 0 ? (
                     <Image
@@ -253,7 +254,7 @@ const handleWhatsAppClick = () => {
                     </>
                   )}
                 </div>
-
+                
                 {images.length > 1 && (
                   <div className="flex gap-2 mt-4 overflow-x-auto pb-2 scrollbar-hide">
                     {images.map((img, idx) => (
