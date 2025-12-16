@@ -182,10 +182,6 @@ const handleWhatsAppClick = () => {
   return (
     <main>
       <ToastContainer />
-
-      <header className="sticky top-0 z-50 bg-white shadow-sm">
-        <Links />
-      </header>
       
       <section className="pt-0 min-h-screen bg-gradient-to-br from-slate-50 via-white to-amber-50/30 relative overflow-hidden">
      
