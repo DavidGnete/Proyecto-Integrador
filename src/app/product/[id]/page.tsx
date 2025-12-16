@@ -183,17 +183,26 @@ const handleWhatsAppClick = () => {
     <main>
       <ToastContainer />
       
-      <section className="pt-0 min-h-screen bg-gradient-to-br from-slate-50 via-white to-amber-50/30 relative overflow-hidden">
+      <section className=" pt-32 md:pt-40 min-h-screen bg-gradient-to-br from-slate-50 via-white to-black-50/30 ">
+
      
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+<div
+  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: "url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80')",
+  }}
+/>
+
+     
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/80 to-transparent pointer-events-none z-0">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-amber-100/40 to-orange-100/40 rounded-full blur-3xl"></div>
           <div className="absolute top-1/2 -left-40 w-96 h-96 bg-gradient-to-br from-slate-100/50 to-slate-200/30 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-40 right-1/4 w-72 h-72 bg-gradient-to-br from-amber-50/50 to-yellow-100/30 rounded-full blur-3xl"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8 py-8 relative z-10">
-          {/* Main Card */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl shadow-slate-200/50 border border-white/50 overflow-hidden">
+          
+          <div className="mt-8 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl shadow-slate-300/40 border border-slate-200 overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
               
          
@@ -484,17 +493,7 @@ const handleWhatsAppClick = () => {
             </div>
           </div>
 
-          {/* Bottom section */}
-          <div className="mt-8 flex">
-            <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 leading-tight">
-              {product.spaceName}
-            </h1>
-          </div>
-          <div className="border-t border-slate-100 pt-4">
-            <p className="text-slate-600 leading-relaxed text-base">
-              {product.description || "Espacio de trabajo moderno y funcional, diseñado para impulsar tu productividad. Ideal para freelancers, startups y equipos remotos."}
-            </p>
-          </div>
+        
         </div>
         <Products />
       </section>
