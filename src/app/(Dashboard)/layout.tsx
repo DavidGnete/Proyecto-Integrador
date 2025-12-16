@@ -23,9 +23,7 @@ export default function AuthLayout({children}: DashboardLayoutprops){
         {children}
       </div>
 
-      <div className="relative z-50">
-    <Links />
-    </div>
+
   </div>
   )
 }

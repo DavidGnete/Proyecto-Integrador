@@ -257,7 +257,6 @@ export default function Links() {
             {/* Separador */}
             <div className="h-px bg-slate-100 mx-4" />
 
-            {/* Sección Navbar (login/logout) */}
             <div className="p-4 sm:p-5">
               <Navbar />
             </div>
