@@ -12,7 +12,7 @@ export default function Links() {
 
   return (
     <>
-      {/* ========== NAVBAR PRINCIPAL - TRANSPARENTE ========== */}
+    
       <nav
         className="
           fixed top-0 left-0 right-0
@@ -21,7 +21,7 @@ export default function Links() {
           z-50
         "
       >
-        {/* Línea decorativa superior sutil */}
+      
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         
         <div 
@@ -33,9 +33,7 @@ export default function Links() {
           "
         >
           
-          {/* ===== LOGO ===== */}
           <Link href="/Home" className="flex items-center gap-3 group">
-            {/* Icono del logo */}
             <div 
               className="
                 w-10 h-10 sm:w-11 sm:h-11
@@ -63,28 +61,27 @@ export default function Links() {
               </svg>
             </div>
             
-            {/* Texto del logo */}
+        
             <div className="hidden sm:block">
-              <span className="text-xl lg:text-2xl font-semibold tracking-tight">
+              <span className="text-4xl lg:text-2xl font-semibold tracking-tight">
                 <span className="text-white">Work</span>
                 <span className="text-white/50">Point</span>
               </span>
             </div>
           </Link>
 
-          {/* ===== NAVEGACIÓN DESKTOP ===== */}
           <div className="hidden md:flex items-center gap-1 lg:gap-2">
             
-            {/* Link Inicio */}
+         
             <Link 
               href="/Home" 
               className="
                 group
                 px-4 lg:px-5 py-2.5
-                text-white/60 text-sm font-medium
+                text-white text-base lg:text-lg font-bold
                 rounded-full
                 hover:text-white
-                hover:bg-white/5
+                hover:bg-white/10
                 transition-all duration-300
                 flex items-center gap-2.5
               "
@@ -105,35 +102,6 @@ export default function Links() {
               <span className="hidden lg:inline">Inicio</span>
             </Link>
 
-            {/* Link Espacios */}
-            <Link 
-              href="/espacios" 
-              className="
-                group
-                px-4 lg:px-5 py-2.5
-                text-white/60 text-sm font-medium
-                rounded-full
-                hover:text-white
-                hover:bg-white/5
-                transition-all duration-300
-                flex items-center gap-2.5
-              "
-            >
-              <svg 
-                className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={1.5} 
-                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5" 
-                />
-              </svg>
-              <span className="hidden lg:inline">Espacios</span>
-            </Link>
 
             {/* Link Publicar (solo autenticados) */}
             {isAuthenticated && (
@@ -167,14 +135,11 @@ export default function Links() {
               </Link>
             )}
 
-            {/* Separador vertical */}
             <div className="w-px h-5 bg-white/10 mx-3" />
 
-            {/* Componente Navbar (auth buttons) */}
             <Navbar />
           </div>
 
-          {/* ===== BOTÓN MENÚ MÓVIL ===== */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="
@@ -216,7 +181,6 @@ export default function Links() {
         </div>
       </nav>
 
-      {/* ========== MENÚ MÓVIL ========== */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           
@@ -297,49 +261,6 @@ export default function Links() {
                 </div>
               </Link>
 
-              {/* Link Espacios */}
-              <Link 
-                href="/espacios" 
-                onClick={closeMenu}
-                className="
-                  flex items-center gap-4 
-                  px-4 py-4
-                  rounded-xl 
-                  hover:bg-white/5
-                  transition-all duration-300
-                  group
-                "
-              >
-                <div 
-                  className="
-                    w-11 h-11 
-                    rounded-xl 
-                    bg-white/5 
-                    border border-white/10
-                    flex items-center justify-center
-                    group-hover:bg-white/10
-                    transition-all duration-300
-                  "
-                >
-                  <svg 
-                    className="w-5 h-5 text-white/70" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={1.5} 
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5" 
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-white font-medium">Espacios</p>
-                  <p className="text-white/40 text-xs mt-0.5">Explora nuestros espacios</p>
-                </div>
-              </Link>
 
               {/* Link Publicar (solo autenticados) */}
               {isAuthenticated && (
@@ -388,10 +309,9 @@ export default function Links() {
               )}
             </div>
 
-            {/* Separador */}
+          
             <div className="h-px bg-white/5 mx-5" />
 
-            {/* Sección Navbar (login/logout) */}
             <div className="p-5">
               <Navbar />
             </div>

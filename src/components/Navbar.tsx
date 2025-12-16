@@ -26,16 +26,18 @@ export default function Navbar() {
         // If no user is logged in
         <button
           onClick={() => router.push("/login")}
-          className="relative px-5 py-2.5 
-              text-slate-600 font-medium text-sm
+          className="relative 
+          px-4 lg:px-5 py-2.5
+              text-white text-base lg:text-lg font-bold
+              font-medium text-sm
               rounded-full
               hover:bg-slate-100 hover:text-slate-900
               transition-all duration-200
               group"
         >
           <span className="flex items-center gap-2 cursor-pointer">
-            <svg className="w-4 h-4 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+            <svg className="w-5 h-7 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1 " />
             </svg>
             Inicia Sesión
           </span>
