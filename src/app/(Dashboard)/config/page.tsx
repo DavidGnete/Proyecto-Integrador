@@ -1,27 +1,26 @@
 "use client";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import * as yup from "yup";
 
 export default function Nube() {
-  // 🔒 IDs válidos en base de datos
   const CATEGORIE_ID = 1;
   const BRANCH_ID = 1;
   const USER_ID = 24;
-
-  // 🧾 Campos del formulario
+const router = useRouter();
   const [spaceName, setSpaceName] = useState("");
   const [maxCapacity, setMaxCapacity] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
 
-  // 📸 Imágenes
+  // Imágenes
   const [images, setImages] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadingImages, setUploadingImages] = useState(false);
 
-  // 🛡️ Validación
+  // Validación
   const schema = yup.object({
     spaceName: yup.string().required("Nombre obligatorio"),
     maxCapacity: yup
@@ -57,7 +56,7 @@ export default function Nube() {
       return;
     }
 
-    // 📦 Payload EXACTO que el backend espera
+    //  Payload EXACTO que el backend espera
     const payload = {
       spaceName: spaceName.trim(),
       maxCapacity: Number(maxCapacity),
@@ -86,7 +85,7 @@ export default function Nube() {
       const spaceId = response.data?.id;
       if (!spaceId) throw new Error("Backend no devolvió spaceId");
 
-      // 📤 Subida de imágenes
+    
       if (images.length > 0) {
         setUploadingImages(true);
 
@@ -101,19 +100,19 @@ export default function Nube() {
           );
         }
       }
+      toast.info("coworking creado, Redirigiendo...");
+      setTimeout(() => router.push("/Home"), 1500);
 
-      toast.success("Coworking creado correctamente");
-
-      // 🔄 Reset
+    
       setSpaceName("");
       setMaxCapacity("");
       setPrice("");
       setDescription("");
       setImages([]);
-    } catch (err: any) {
-      console.error("ERROR BACKEND:", err?.response?.data || err.message);
+    } catch (error: any) {
+      console.error("ERROR BACKEND:", error?.response?.data || error.message);
       toast.error(
-        err?.response?.data?.error?.message ||
+        error?.response?.data?.error?.message ||
           "Error interno del servidor"
       );
     } finally {

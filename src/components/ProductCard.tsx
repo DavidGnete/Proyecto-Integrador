@@ -39,10 +39,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <div
-      className="group w-full bg-white rounded-xl overflow-hidden 
-      border border-gray-200
-      transition-all duration-300 ease-out
-      hover:shadow-xl hover:border-transparent hover:-translate-y-1"
+      className="group
+    w-full
+    max-w-sm
+    mx-auto
+    bg-white
+    rounded-xl
+    overflow-hidden
+    border border-gray-200
+    transition-all duration-300
+    hover:shadow-xl hover:-translate-y-1"
     >
       
       <div className="relative w-full aspect-[16/10] overflow-hidden">
@@ -73,7 +79,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
 
-      {/* Contenido */}
       <div className="p-5">
         {/* Header con nombre y precio */}
         <div className="flex items-start justify-between gap-4 mb-3">
