@@ -142,5 +142,13 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  main {
+    padding-top: 4rem; /* Ajuste para barra sticky */
+  }
+  @media (min-width: 768px) {
+    main {
+      padding-top: 5rem;
+    }
+  }
 }
 
