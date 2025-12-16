@@ -10,7 +10,7 @@
 
 @layer base {
   input {
-    @apply border w-[400px] border-gray-200 py-2 px-6;
+    @apply border w-[400px] border-gray-200 py-2 px-4;
   }
 }
 
@@ -67,7 +67,7 @@ body {
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.4rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -143,7 +143,7 @@ body {
     @apply bg-background text-foreground;
   }
   .container {
-    margin: 0 auto;
+    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl;
   }
   main {
     padding-top: 0; /* Ya no sticky */
