@@ -77,7 +77,7 @@ const handleWhatsAppClick = () => {
     const loadProduct = async () => {
       try {
         const res = await fetch(
-          `https://work-point-9be66ef1d8d3.herokuapp.com/api/space/getById/${id}`
+          `http://72.61.6.155:500/api/space/getById/${id}`
         );
         const data = await res.json();
 
@@ -126,7 +126,7 @@ const handleWhatsAppClick = () => {
 
     try {
       const response = await fetch(
-        "https://work-point-9be66ef1d8d3.herokuapp.com/api/Booking",
+        "http://72.61.6.155:500/api/Booking",
         {
           method: "POST",
           headers: {

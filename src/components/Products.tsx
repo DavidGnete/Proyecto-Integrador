@@ -34,7 +34,7 @@ export default function Products() {
     const fetchProducts = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch("https://work-point-9be66ef1d8d3.herokuapp.com/api/space/getAll"); 
+        const res = await fetch("http://72.61.6.155:500/api/space/getAll"); 
 
         if (!res.ok) throw new Error("No se pudieron cargar los productos");
 

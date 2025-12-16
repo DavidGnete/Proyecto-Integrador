@@ -25,7 +25,7 @@ export default function DeleteSpaceModal({
 
     try {
       const res = await fetch(
-        `https://work-point-9be66ef1d8d3.herokuapp.com/api/space/delete/${spaceId}`,
+        `http://72.61.6.155:500/api/space/delete/${spaceId}`,
         { method: "DELETE" }
       );
 

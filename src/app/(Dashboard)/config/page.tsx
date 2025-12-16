@@ -95,7 +95,7 @@ const router = useRouter();
           formData.append("Photo", file);
 
           await axios.post(
-            "https://work-point-9be66ef1d8d3.herokuapp.com/api/photos/create",
+            "http://72.61.6.155:500/api/photos/create",
             formData
           );
         }
