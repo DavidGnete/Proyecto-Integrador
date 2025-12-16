@@ -142,13 +142,12 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-  main {
-    padding-top: 4rem; /* Ajuste para barra sticky */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  @media (min-width: 768px) {
-    main {
-      padding-top: 5rem;
-    }
+  main {
+    padding-top: 0; /* Ya no sticky */
   }
 }
 
