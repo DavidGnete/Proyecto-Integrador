@@ -13,14 +13,20 @@ export default function Navbar() {
     <nav className="flex justify-between p-4">
        {session?.user ? (
         // If user is logged in
-        <div className="flex items-center gap-3">
-          <p>Bienvenido {session.user.name}</p>
+       <div className="flex items-center gap-4 text-white">
+          <div className="flex flex-col">
+            <p className="font-medium">
+              Bienvenido {session.user.name}
+            </p>
+            <span className="w-full h-px bg-white/40 mt-1" />
+        </div>
            <button
             onClick={() => signOut({ callbackUrl: "/login" })}
             className="bg-red-600 text-white px-3 py-1 rounded cursor-pointer"
           >
             Logout
           </button>
+         
         </div>
       ) : (
         // If no user is logged in

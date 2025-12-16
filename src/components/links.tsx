@@ -87,7 +87,7 @@ export default function Links() {
               "
             >
               <svg 
-                className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" 
+                className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -95,7 +95,7 @@ export default function Links() {
                 <path 
                   strokeLinecap="round" 
                   strokeLinejoin="round" 
-                  strokeWidth={1.5} 
+                  strokeWidth={2} 
                   d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" 
                 />
               </svg>
@@ -108,18 +108,18 @@ export default function Links() {
               <Link 
                 href="/config" 
                 className="
-                  group
-                  px-4 lg:px-5 py-2.5
-                  text-white/60 text-sm font-medium
-                  rounded-full
-                  hover:text-white
-                  hover:bg-white/5
-                  transition-all duration-300
-                  flex items-center gap-2.5
+                group
+                px-4 lg:px-5 py-2.5
+                text-white text-base lg:text-lg font-bold
+                rounded-full
+                hover:text-white
+                hover:bg-white/10
+                transition-all duration-300
+                flex items-center gap-2.5
                 "
               >
                 <svg 
-                  className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" 
+                  className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300 " 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -127,7 +127,7 @@ export default function Links() {
                   <path 
                     strokeLinecap="round" 
                     strokeLinejoin="round" 
-                    strokeWidth={1.5} 
+                    strokeWidth={2} 
                     d="M12 4v16m8-8H4" 
                   />
                 </svg>
@@ -214,10 +214,10 @@ export default function Links() {
               </p>
             </div>
 
-            {/* Links principales */}
+    
             <div className="px-3 pb-3 space-y-1">
               
-              {/* Link Inicio */}
+              
               <Link 
                 href="/Home" 
                 onClick={closeMenu}
