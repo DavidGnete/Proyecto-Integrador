@@ -26,7 +26,7 @@ interface Props {
   onSuccess: (p: Product) => void;
 }
 
-const API = "http://72.61.6.155:500/api";
+const API = "https://work-point-9be66ef1d8d3.herokuapp.com/api";
 
 export default function EditSpaceModal({ isOpen, onClose, product, onSuccess }: Props) {
   const fileRef = useRef<HTMLInputElement>(null);
